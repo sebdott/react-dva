@@ -1,24 +1,29 @@
+import 'babel-polyfill';
 import dva from 'dva';
-import createHistory from 'history/createBrowserHistory';
-import createLoading from 'dva-loading';
+import {message} from 'antd';
 import Fingerprint2 from 'fingerprintjs2';
-import { message } from 'antd';
+import {browserHistory} from 'dva/router';
+import createLoading from 'dva-loading';
 import './index.css';
-import { encryptAES, decryptAES } from './utils/encrypt'
+import {encryptAES, decryptAES} from './utils/encrypt';
 
 const ERROR_MSG_DURATION = 3; // 3 秒
 
 // 1. Initialize
 const app = dva({
-  history: createHistory(),
+  history: browserHistory,
   onError(e) {
-    message.error(e.message, ERROR_MSG_DURATION);
+    const msgs = document.querySelectorAll('.ant-message-notice');
+    if (msgs.length < 1) {
+      message.error('There is an Error', /* duration */ 3);
+    }
   },
 });
 
 // 2. Plugins
-app.use(createLoading());
-
+// app.use(createLoading());
+app.model(require('./models/navigation'));
+app.model(require('./models/users'));
 // 3. Model
 // Moved to router.js
 

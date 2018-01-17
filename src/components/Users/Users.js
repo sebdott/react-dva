@@ -1,13 +1,14 @@
 import React from 'react';
-import { connect } from 'dva';
-import { Table, Pagination, Popconfirm, Button } from 'antd';
-import { routerRedux } from 'dva/router';
+import {connect} from 'dva';
+import {Table, Pagination, Popconfirm, Button} from 'antd';
+import {routerRedux} from 'dva/router';
 import queryString from 'query-string';
 import styles from './Users.css';
-import { PAGE_SIZE } from '../../constants';
+import {PAGE_SIZE} from '../../constants';
 import UserModal from './UserModal';
+import Header from '../MainLayout/Header';
 
-function Users({ dispatch, list: dataSource, loading, total, page: current }) {
+function Users({dispatch, list: dataSource, loading, total, page: current}) {
   function deleteHandler(id) {
     dispatch({
       type: 'users/remove',
@@ -16,16 +17,18 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   }
 
   function pageChangeHandler(page) {
-    dispatch(routerRedux.push({
-      pathname: '/users',
-      search: queryString.stringify({ page }),
-    }));
+    dispatch(
+      routerRedux.push({
+        pathname: '/users',
+        search: queryString.stringify({page}),
+      }),
+    );
   }
 
   function editHandler(id, values) {
     dispatch({
       type: 'users/patch',
-      payload: { id, values },
+      payload: {id, values},
     });
   }
 
@@ -41,7 +44,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      render: text => <a href="">{text}</a>,
+      render: text => <a href="#">{text}</a>,
     },
     {
       title: 'Email',
@@ -61,8 +64,10 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
           <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
             <a>Edit</a>
           </UserModal>
-          <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record.id)}>
-            <a href="">Delete</a>
+          <Popconfirm
+            title="Confirm to delete?"
+            onConfirm={deleteHandler.bind(null, record.id)}>
+            <a href="#">Delete</a>
           </Popconfirm>
         </span>
       ),
@@ -71,6 +76,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 
   return (
     <div className={styles.normal}>
+      <Header />
       <div>
         <div className={styles.create}>
           <UserModal record={{}} onOk={createHandler}>
@@ -80,7 +86,6 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
         <Table
           columns={columns}
           dataSource={dataSource}
-          loading={loading}
           rowKey={record => record.id}
           pagination={false}
         />
@@ -96,10 +101,9 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   );
 }
 
-function mapStateToProps(state) {
-  const { list, total, page } = state.users;
+function mapStateToProps({userModel}) {
+  const {list, total, page} = userModel;
   return {
-    loading: state.loading.models.users,
     list,
     total,
     page,
