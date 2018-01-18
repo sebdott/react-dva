@@ -3,9 +3,8 @@ import dva from 'dva';
 import {message} from 'antd';
 import Fingerprint2 from 'fingerprintjs2';
 import {browserHistory} from 'dva/router';
-import createLoading from 'dva-loading';
 import './index.css';
-import {encryptAES, decryptAES} from './utils/encrypt';
+import {logTranslate, encryptAES, decryptAES} from './utils';
 
 const ERROR_MSG_DURATION = 3; // 3 秒
 
@@ -15,13 +14,15 @@ const app = dva({
   onError(e) {
     const msgs = document.querySelectorAll('.ant-message-notice');
     if (msgs.length < 1) {
-      message.error('There is an Error', /* duration */ 3);
+      const errMsg = logTranslate(e);
+      message.error(errMsg, /* duration */ 3);
     }
   },
 });
 
 // 2. Plugins
 // app.use(createLoading());
+app.model(require('./models/person'));
 app.model(require('./models/navigation'));
 app.model(require('./models/users'));
 // 3. Model

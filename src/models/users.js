@@ -41,6 +41,42 @@ export default {
       const page = yield select(state => state.users.page);
       yield put({type: 'fetch', payload: {page}});
     },
+    *secureAuthentication({payload}, {put}) {
+      const msg = payload.msg || '登入已过期';
+      const authenticationState = payload.authenticationState || 'LOGIN';
+      // localStorage.removeItem(TYPE.accessToken);
+      // localStorage.removeItem(TYPE.sessionId);
+      yield put({type: 'initializeAll'});
+      yield put({type: 'teamModel/initializeAll'});
+      yield put({type: 'transactionModel/initializeAll'});
+      yield put({type: 'orderModel/initializeAll'});
+      yield put({type: 'transferModel/initializeAll'});
+      yield put({
+        type: 'layoutModel/updateState',
+        payload: {
+          shouldShowProfileModal: false,
+          shouldShowAuthModel: payload.showLogin,
+        },
+      });
+      yield put({
+        type: 'updateState',
+        payload: {authenticationState},
+      });
+      if (payload.showLogin) {
+        yield put({
+          type: 'formModel/updateState',
+          payload: {
+            responseMsg: {
+              msg,
+              icon: 'close-circle-outline',
+              color: 'red',
+            },
+          },
+        });
+      } else {
+        throw new Error(msg);
+      }
+    },
   },
   subscriptions: {
     setup({dispatch, history}) {

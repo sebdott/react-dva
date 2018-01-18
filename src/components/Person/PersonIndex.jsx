@@ -1,28 +1,41 @@
 import React, {Component} from 'react';
-import {Modal, Form, Input} from 'antd';
+import {Modal, Form, Input, Button} from 'antd';
 import {connect} from 'dva';
 import Header from '../MainLayout/Header';
 
 class PersonIndex extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      visible: false,
-    };
+    this.dispatch = this.props.dispatch;
+  }
+  onGetApiValue = () => {
+    this.dispatch({
+      type: 'personModel/getPersonList',
+    });
+  };
+  renderPersonList() {
+    const {personList} = this.props;
+
+    const list = _.map(personList, person => {
+      return <div key={person.id}>{person.name}</div>;
+    });
+
+    return <div>{list}</div>;
   }
   render() {
     return (
       <span>
         <Header />
-        <div>Test</div>
+        <div>{this.renderPersonList()}</div>
+        <Button onClick={this.onGetApiValue} />
       </span>
     );
   }
 }
 
-const mapStatesToProps = ({userModel}) => {
+const mapStatesToProps = ({personModel}) => {
   return {
-    ...userModel,
+    ...personModel,
   };
 };
 
