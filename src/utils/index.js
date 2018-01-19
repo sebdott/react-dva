@@ -1,6 +1,7 @@
 import * as API from './API';
+import * as type from './type.config';
 
-export {API};
+export {API, type};
 
 export {encryptAES, decryptAES} from './encrypt';
 export {request} from './request';

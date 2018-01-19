@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Modal, Form, Input, Button} from 'antd';
 import {connect} from 'dva';
 import Header from '../MainLayout/Header';
+import {LoadingBar} from '../General';
 
 class PersonIndex extends Component {
   constructor(props) {
@@ -23,9 +24,11 @@ class PersonIndex extends Component {
     return <div>{list}</div>;
   }
   render() {
+    const {awaitingResponse} = this.props;
     return (
       <span>
         <Header />
+        <LoadingBar isLoading={awaitingResponse} />
         <div>{this.renderPersonList()}</div>
         <Button onClick={this.onGetApiValue} />
       </span>

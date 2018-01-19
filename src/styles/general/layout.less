@@ -1,0 +1,26 @@
+@import '../variables.less';
+
+.clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.row {
+  .clearfix;
+  display: block;
+}
+
+.column {
+  .clearfix;
+  float: left;
+  width: auto;
+}
+
+.pageContainer {
+  .row;  
+  width: @page-width;
+  margin: 0 auto;
+}

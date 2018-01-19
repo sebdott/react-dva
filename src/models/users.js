@@ -1,5 +1,6 @@
 import queryString from 'query-string';
 import * as usersService from '../services/users';
+import {API, type as TYPE} from '../utils';
 
 export default {
   namespace: 'userModel',
@@ -77,6 +78,69 @@ export default {
         throw new Error(msg);
       }
     },
+    // *putUserLogin(payloadObj, {call, put, select}) {
+    //   yield put({type: 'updateState', payload: {awaitingResponse: true}});
+    //   const {formModel, appModel} = yield select(state => state);
+    //   const {username, password, varifyCode, webUniqueCode} = formModel;
+    //   const encodedPassword = obse7(password.value);
+    //   const hash = yield obsw7({
+    //     username: username.value,
+    //     password: password.value,
+    //     doubleHash: appModel.deviceToken,
+    //   });
+    //   const body = {
+    //     hash,
+    //     password: encodedPassword,
+    //     username: username.value,
+    //     validateCode: varifyCode.value,
+    //     webUniqueCode,
+    //   };
+    //   const response = yield call(request.to, {
+    //     url: API.webLogin,
+    //     method: 'post',
+    //     headers: {device_token: appModel.deviceToken},
+    //     body,
+    //   });
+    //   const {err, data} = response;
+    //   if (data) {
+    //     const accessToken = data.oauthToken.access_token;
+    //     const sessionId = data.sessionId;
+    //     window.history.replaceState({}, document.title, '.');
+    //     yield localStorage.setItem(TYPE.accessToken, accessToken);
+    //     yield localStorage.setItem(TYPE.sessionId, sessionId);
+    //     yield put({type: 'updateState', payload: {accessToken, sessionId}});
+    //     yield put({type: 'getCurrentUser'});
+    //     yield put({type: 'getCardsAndWithdrawDetail'});
+    //     yield put({
+    //       type: 'formModel/initializeState',
+    //       payload: ['username', 'password', 'varifyCode'],
+    //     });
+    //     yield put({
+    //       type: 'updateState',
+    //       payload: {awaitingResponse: false},
+    //     });
+    //     yield put({
+    //       type: 'layoutModel/updateState',
+    //       payload: {shouldShowAuthModel: false},
+    //     });
+    //   } else if (err) {
+    //     yield put({type: 'formModel/getValidatePic'});
+    //     yield put({
+    //       type: 'formModel/updateState',
+    //       payload: {
+    //         responseMsg: {
+    //           msg: err.message,
+    //           icon: 'checkbox-marked-circle-outline',
+    //           color: 'red',
+    //         },
+    //       },
+    //     });
+    //     yield put({
+    //       type: 'updateState',
+    //       payload: {awaitingResponse: false},
+    //     });
+    //   }
+    // },
   },
   subscriptions: {
     setup({dispatch, history}) {
