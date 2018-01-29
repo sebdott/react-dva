@@ -5,6 +5,6 @@ WORKDIR /app
 ADD . /app
 RUN npm install
 RUN yarn
-#ENV PORT=3000
 EXPOSE 8000
-CMD yarn start
+CMD yarn startP
+

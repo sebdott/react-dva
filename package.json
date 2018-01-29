@@ -22,6 +22,8 @@
   "scripts": {
     "start": "cross-env BABEL_ENV=development NODE_ENV=development run-p -ls start:*",
     "start:app": "roadhog server",
+    "startP": "cross-env BABEL_ENV=production NODE_ENV=production run-p -ls start:*",
+    "startP:app": "roadhog server",
     "build-clean": "rimraf ./register/build ./dist/register",
     "build": "cross-env BABEL_ENV=production NODE_ENV=production run-p build:*",
     "build:app": "roadhog build --analyze",
@@ -32,7 +34,6 @@
     "lint:js": "eslint -f pretty --quiet --cache --report-unused-disable-directives --ext .js,.jsx src/ register/",
     "lint:js:fix": "yarn lint:js --fix",
     "json": "json-server ./mock/db.json",
-    "precommit": "lint-staged",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
