@@ -10,6 +10,7 @@ import {message} from 'antd';
  * @return {object}           An object containing either "data" or "err"
  */
 export function request(url, options) {
+  // options.mode = 'no-cors';
   return fetch(url, options)
     .then(checkStatus)
     .then(data => ({data}))

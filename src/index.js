@@ -4,7 +4,7 @@ import {message} from 'antd';
 import Fingerprint2 from 'fingerprintjs2';
 import {browserHistory} from 'dva/router';
 import './index.css';
-import {logTranslate, encryptAES, decryptAES} from './utils';
+import {encryptAES, decryptAES} from './utils';
 
 const ERROR_MSG_DURATION = 3; // 3 秒
 
@@ -14,17 +14,12 @@ const app = dva({
   onError(e) {
     const msgs = document.querySelectorAll('.ant-message-notice');
     if (msgs.length < 1) {
-      const errMsg = logTranslate(e);
-      message.error(errMsg, /* duration */ 3);
+      message.error(e, /* duration */ 3);
     }
   },
 });
-
 // 2. Plugins
-// app.use(createLoading());
-app.model(require('./models/person'));
-app.model(require('./models/navigation'));
-app.model(require('./models/users'));
+app.model(require('./models/analyser'));
 // 3. Model
 // Moved to router.js
 

@@ -5,4 +5,4 @@ export {API, type};
 
 export {encryptAES, decryptAES} from './encrypt';
 export {request} from './request';
-export {logTranslate} from './logTranslate';
+export {isValidURL} from './isValidURL';

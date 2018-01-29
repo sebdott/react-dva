@@ -1,8 +1,8 @@
 version: '3'
 services:
-  dva-Test:
+  react-dva:
     build: .
-    container_name: dva-Test
+    container_name: react-dva
     volumes:
       - .:/app
     ports:

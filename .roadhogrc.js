@@ -74,7 +74,7 @@ export default {
   ignoreMomentLocale: true,
   proxy: {
     '/api': {
-      target: 'http://192.168.1.93:7500',
+      target: 'http://localhost:8000',
       changeOrigin: true,
     },
   },

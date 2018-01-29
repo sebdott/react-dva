@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
 import {connect} from 'dva';
+import css from '../../styles/general/layout.less';
 
 class Footer extends Component {
   render() {
     return (
-      <span>
+      <div className={css.footer}>
         <div>2010-2018 © Codedsphere All Rights Reserved.</div>
-      </span>
+      </div>
     );
   }
 }
 
-const mapStatesToProps = ({userModel, navigationModel}) => {
+const mapStatesToProps = ({userModel}) => {
   return {
     ...userModel,
-    ...navigationModel,
   };
 };
 

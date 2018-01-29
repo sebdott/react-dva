@@ -1,14 +1,12 @@
 import React from 'react';
-import {Router, Switch, Route} from 'dva/router';
-import PersonIndex from '../src/components/Person/PersonIndex';
-import Users from '../src/components/Users/Users';
+import {Router, Route} from 'dva/router';
+import AnalyserIndex from '../src/components/Analyser/AnalyserIndex';
 
 function RouterConfig({history, app}) {
   return (
     <Router history={history}>
-      <Route path="/" component={PersonIndex} />
-      <Route path="/Users" component={Users} />
-      <Route path="/person" component={PersonIndex} />
+      <Route path="/" component={AnalyserIndex} />
+      <Route path="/analyser" component={AnalyserIndex} />
     </Router>
   );
 }
