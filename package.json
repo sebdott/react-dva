@@ -1,6 +1,6 @@
 {
-  "name": "jx-lottery-webapp",
-  "version": "1.4.0",
+  "name": "react-dva",
+  "version": "1.0.0",
   "private": true,
   "browserslist": {
     "production": [
@@ -22,18 +22,15 @@
   "scripts": {
     "start": "cross-env BABEL_ENV=development NODE_ENV=development run-p -ls start:*",
     "start:app": "roadhog server",
-    "startP": "cross-env BABEL_ENV=production NODE_ENV=production run-p -ls start:*",
-    "startP:app": "roadhog server",
-    "build-clean": "rimraf ./register/build ./dist/register",
     "build": "cross-env BABEL_ENV=production NODE_ENV=production run-p build:*",
     "build:app": "roadhog build --analyze",
-    "build:reg": "run-s -ls build-clean build:reg:*",
     "lint": "run-p lint:*",
-    "lint:css": "stylelint \"src/styles/**/*.less\" \"register/app/*.scss\" --custom-formatter=node_modules/stylelint-formatter-pretty --cache",
+    "lint:css": "stylelint \"src/styles/**/*.less\" --custom-formatter=node_modules/stylelint-formatter-pretty --cache",
     "lint:css:fix": "yarn lint:css --fix",
-    "lint:js": "eslint -f pretty --quiet --cache --report-unused-disable-directives --ext .js,.jsx src/ register/",
+    "lint:js": "eslint -f pretty --quiet --cache --report-unused-disable-directives --ext .js,.jsx src/ ",
     "lint:js:fix": "yarn lint:js --fix",
     "json": "json-server ./mock/db.json",
+    "precommit": "lint-staged",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
