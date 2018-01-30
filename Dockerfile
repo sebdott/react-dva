@@ -6,10 +6,7 @@ ADD . /app
 RUN npm install
 RUN yarn
 RUN yarn build
-# EXPOSE 8000
-# CMD yarn startP
 
-# Stage 2 - the production environment
 FROM nginx
 COPY --from=build-node /app/dist /usr/share/nginx/html
 EXPOSE 80

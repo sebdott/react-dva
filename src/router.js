@@ -5,8 +5,11 @@ import AnalyserIndex from '../src/components/Analyser/AnalyserIndex';
 function RouterConfig({history, app}) {
   return (
     <Router history={history}>
-      <Route path="/" component={AnalyserIndex} />
-      <Route path="/analyser" component={AnalyserIndex} />
+      <div>
+        <Route path="/" component={AnalyserIndex} />
+        <Route path="/analyser" component={AnalyserIndex} />
+        <Route path="/analysers" component={AnalyserIndex} />
+      </div>
     </Router>
   );
 }

@@ -22,7 +22,7 @@
   "scripts": {
     "start": "cross-env  DISABLE_ESLINT=true BABEL_ENV=development NODE_ENV=development run-p -ls start:*",
     "start:app": "roadhog dev",
-    "build": "cross-env BABEL_ENV=production NODE_ENV=production run-p build:*",
+    "build": "cross-env DISABLE_ESLINT=true BABEL_ENV=production NODE_ENV=production run-p build:*",
     "build:app": "roadhog build --analyze",
     "lint": "run-p lint:*",
     "lint:css": "stylelint \"src/styles/**/*.less\" --custom-formatter=node_modules/stylelint-formatter-pretty --cache",
@@ -63,7 +63,7 @@
     "classnames": "^2.2.5",
     "crypto-js": "^3.1.9-1",
     "dexie": "^2.0.1",
-    "dva": "^1.2.1",
+    "dva": "^2.1.0",
     "dva-loading": "^1.0.4",
     "fingerprintjs2": "^1.5.1",
     "kjua": "^0.1.2",
