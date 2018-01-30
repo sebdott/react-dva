@@ -20,8 +20,8 @@
     ]
   },
   "scripts": {
-    "start": "cross-env BABEL_ENV=development NODE_ENV=development run-p -ls start:*",
-    "start:app": "roadhog server",
+    "start": "cross-env  DISABLE_ESLINT=true BABEL_ENV=development NODE_ENV=development run-p -ls start:*",
+    "start:app": "roadhog dev",
     "build": "cross-env BABEL_ENV=production NODE_ENV=production run-p build:*",
     "build:app": "roadhog build --analyze",
     "lint": "run-p lint:*",
@@ -53,8 +53,11 @@
     "node": "^8.9.1"
   },
   "dependencies": {
+    "@babel/helper-module-imports": "^7.0.0-beta.38",
+    "@babel/polyfill": "^7.0.0-beta.38",
     "Base64": "^1.0.1",
     "antd": "^2.13.8",
+    "babel-plugin-transform-optional-catch-binding": "^7.0.0-alpha.16",
     "babel-polyfill": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "better-scroll": "^1.6.0",
@@ -86,7 +89,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
-    "babel-plugin-dva-hmr": "^0.4.0",
+    "babel-plugin-dva-hmr": "^0.4.1",
+    "babel-plugin-fast-async": "^6.1.2",
     "babel-plugin-import": "^1.6.3",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-syntax-trailing-function-commas": "^6.22.0",
@@ -130,7 +134,7 @@
     "purifycss-webpack": "^0.7.0",
     "redbox-react": "^1.5.0",
     "rimraf": "^2.6.2",
-    "roadhog": "^1.3.1",
+    "roadhog": "^2.2.0",
     "sass-loader": "^6.0.6",
     "stylelint": "~8.4.0",
     "stylelint-config-css-modules": "^1.1.0",

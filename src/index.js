@@ -1,8 +1,9 @@
-import 'babel-polyfill';
+import '@babel/polyfill';
 import dva from 'dva';
 import {message} from 'antd';
 import Fingerprint2 from 'fingerprintjs2';
 import {browserHistory} from 'dva/router';
+import Router from './router';
 import './index.css';
 import {encryptAES, decryptAES} from './utils';
 
@@ -19,12 +20,12 @@ const app = dva({
   },
 });
 // 2. Plugins
-app.model(require('./models/analyser'));
+app.model(require('./models/analyser').default);
 // 3. Model
 // Moved to router.js
 
 // 4. Router
-app.router(require('./router'));
+app.router(require('./router').default);
 
 const getFingerprint = () =>
   new Promise(resolve => {
