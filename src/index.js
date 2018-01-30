@@ -3,28 +3,22 @@ import dva from 'dva';
 import {message} from 'antd';
 import Fingerprint2 from 'fingerprintjs2';
 import {browserHistory} from 'dva/router';
-import Router from './router';
 import './index.css';
 import {encryptAES, decryptAES} from './utils';
 
-const ERROR_MSG_DURATION = 3; // 3 秒
+const ERROR_MSG_DURATION = 3;
 
-// 1. Initialize
 const app = dva({
   history: browserHistory,
   onError(e) {
     const msgs = document.querySelectorAll('.ant-message-notice');
     if (msgs.length < 1) {
-      message.error(e, /* duration */ 3);
+      message.error(e, /* duration */ ERROR_MSG_DURATION);
     }
   },
 });
-// 2. Plugins
 app.model(require('./models/analyser').default);
-// 3. Model
-// Moved to router.js
 
-// 4. Router
 app.router(require('./router').default);
 
 const getFingerprint = () =>
